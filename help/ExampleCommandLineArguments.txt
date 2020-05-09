@@ -1,0 +1,1 @@
+"C:\Users\Pranav Devarinti\OneDrive - Cobb County School District\SPV6\Predict.py" NVDA,AMD,INTC 2019-1-1 2020-1-1

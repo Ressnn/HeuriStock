@@ -1,0 +1,2 @@
+pyinstaller --noupx --onedir -p "C:\Users\Pranav Devarinti\OneDrive - Cobb County School District\SPV6\tensorflow" --hidden-import=tensorflow --hidden-import=tensorflow.lite.python.lite -F "C:\Users\Pranav Devarinti\OneDrive - Cobb County School District\SPV6\Predict.spec"
+
