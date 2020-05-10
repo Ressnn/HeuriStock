@@ -22,7 +22,22 @@ class StockPredictingModel():
     # The shape parameter is the input shape of the mode
     # Try setting up cuda version of model
     # Note: cuda and normal models got combined and CuDNNLSTM is now depracated Switching from CuDNNLSTM to just LSTM
+    
+    
     def __init__(self,shape):
+        """
+        The constructor, sets up the machine learning model
+        
+        Parameters
+        ----------
+        shape : tuple
+            The Shape of the ML Model
+
+        Returns
+        -------
+        None.
+
+        """
         #Lets Start By Setting Up the Keras Model
         self.model = Sequential()
         #The input layer parameter is used here to futureproof, NOTE THAT IT ISN'T NEEDED
@@ -49,6 +64,27 @@ class StockPredictingModel():
     # X = Stock,Trend Data| Y=Was the best option to Buy or Sell|Splits = Crossval Parameter|Epochs:More = better but will take longer|batch_size:Less = better but takes longer
     
     def CVTrain(self,x,y,splits,epochs,batch_size):
+        """
+        Cross-Validation Training method
+
+        Parameters
+        ----------
+        x : np.array
+            inputs
+        y : np.array
+            outputs
+        splits : int
+            The number of splits in the cross-validation
+        epochs : int
+            The number epochs in a keras model
+        batch_size : int
+            the batch_size training parameters
+
+        Returns
+        -------
+        None.
+
+        """
         #We use sk-learns kfold here to split the dataset for us
         kfold = KFold(splits, True, 1)  
         data = []
@@ -71,11 +107,41 @@ class StockPredictingModel():
             
     #Saves the model
     def Save(self):
+        """
+        Saves the model
+
+        Returns
+        -------
+        None.
+
+        """
         self.model.save('PredictorTrainedModel.h5')
         self.model.save_weights('PredictorTrainedModelWeights.h5')
     #Loads the model
     def Load(self):
+        """
+        Loads the model
+
+        Returns
+        -------
+        None.
+
+        """
         self.model.load_weights('PredictorTrainedModelWeights.h5')
     #Predicts Based on the data given
     def Predict(self,x):
+        """
+        Predicts Based on given data
+
+        Parameters
+        ----------
+        x : np.array
+            Input Data
+
+        Returns
+        -------
+        np.array
+            the output from the ML model
+
+        """
         return self.model.predict(x)
